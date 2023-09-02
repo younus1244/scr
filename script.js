@@ -18,6 +18,29 @@ const initTimer = maxTime => {
         initGame();
     }, 1000);
 }
+let currentPlayer = 1; // Initialize with Player 1
+
+function checkWord() {
+    let userWord = inputField.value.toLowerCase();
+    if (!userWord) return alert("Please enter the word to check!");
+
+    if (userWord !== correctWord) {
+        alert(`Oops! ${userWord} is not a correct word`);
+    } else {
+        alert(`Congrats! ${correctWord.toUpperCase()} is the correct word`);
+        if (currentPlayer === 1) {
+            player1Score++;
+            currentPlayer = 2; // Switch to Player 2
+        } else {
+            player2Score++;
+            currentPlayer = 1; // Switch back to Player 1
+        }
+        updateScores();
+    }
+
+    initGame();
+}
+
 
 const initGame = () => {
     initTimer(30);
